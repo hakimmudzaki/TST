@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Showcase - Integrasi API</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Web Showcase: Integrasi API</h1>
+        <p class="subtitle">Visualisasi UI berdasarkan data API simulasi (tanpa API key).</p>
+
+        <section class="showcase">
+            <div class="showcase-header">
+                <h2>1. Google Maps Directions API</h2>
+                <p>Simulasi Booking Context menghitung jarak dan ETA untuk menentukan tarif.</p>
+            </div>
+            
+            <div class="showcase-body">
+                <button class="sim-button" data-target="maps-result" data-text-original="Hitung Rute (Simulasi)">Hitung Rute (Simulasi)</button>
+                
+                <div class="result" id="maps-result">
+                    
+                    <h3>Hasil Perhitungan Rute </h3>
+                    <div class="ui-card-container">
+                        <div class="ui-card route-card">
+                            <span class="label">Estimasi Jarak</span>
+                            <span class="value">5,3 <span class="value-small">km</span></span>
+                        </div>
+                        <div class="ui-card route-card">
+                            <span class="label">Estimasi Waktu Tiba (ETA)</span>
+                            <span class="value">20 <span class="value-small">menit</span></span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="technical-toggle" data-target="maps-tech-view">Lihat Data Teknis (JSON)</a>
+                    <div class="technical-view" id="maps-tech-view">
+                        <h4>Visualisasi Permintaan (Request)</h4>
+                        <pre class="request-http"><code>GET https://maps.googleapis.com/maps/api/directions/json?origin=-6.9024,107.6186&destination=-6.9249,107.6366&key=YOUR_API_KEY</code></pre>
+
+                        <h4>Visualisasi Respons (Response)</h4>
+                        <pre><code>{
+  "status": "OK",
+  "routes": [ {
+      "legs": [ {
+          "distance": { "text": "5,3 km", "value": 5300 },
+          "duration": { "text": "20 menit", "value": 1200 },
+          "start_address": "Jl. Diponegoro...",
+          "end_address": "Jl. Gatot Subroto..."
+        } ]
+    } ]
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="showcase">
+            <div class="showcase-header">
+                <h2>2. Payment Gateway API (Midtrans)</h2>
+                <p>Simulasi Payment Context membuat tagihan (charge) untuk top-up Wallet.</p>
+            </div>
+
+            <div class="showcase-body">
+                <button class="sim-button" data-target="midtrans-result" data-text-original="Buat Tagihan Top-Up (Simulasi)">Buat Tagihan Top-Up (Simulasi)</button>
+
+                <div class="result" id="midtrans-result">
+                    
+                    <h3>Tagihan Top-Up Dibuat </h3>
+                    <div class="ui-card-container">
+                        <div class="ui-card payment-invoice">
+                            <span class="label">Jumlah Tagihan</span>
+                            <span class="amount">Rp 100.000,00</span>
+                            <hr style="border: 0; border-top: 1px solid #90caf9; margin: 15px 0;">
+                            <span class="label">Kode Virtual Account (BCA)</span>
+                            <span class="value">12345678901</span>
+                            <span class="label" style="margin-top: 10px; font-size: 12px;">Status: Menunggu Pembayaran</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="technical-toggle" data-target="midtrans-tech-view">Lihat Data Teknis (JSON)</a>
+                    <div class="technical-view" id="midtrans-tech-view">
+                        <h4>Visualisasi Permintaan (Request)</h4>
+                        <pre class="request-http"><code>POST https://api.midtrans.com/v2/charge
+Authorization: Basic (Base64-encoded YOUR_SERVER_KEY)</code></pre>
+                        <pre><code>{
+  "payment_type": "bank_transfer",
+  "transaction_details": { "order_id": "order-topup-12345", "gross_amount": 100000 },
+  "bank_transfer": { "bank": "bca" }
+}</code></pre>
+                        <h4>Visualisasi Respons (Response)</h4>
+                        <pre><code>{
+  "status_code": "201",
+  "transaction_status": "pending",
+  "order_id": "order-topup-12345",
+  "gross_amount": "100000.00",
+  "payment_type": "bank_transfer",
+  "va_numbers": [ { "bank": "bca", "va_number": "12345678901" } ]
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="showcase">
+            <div class="showcase-header">
+                <h2>3. Weather API (OpenWeatherMap)</h2>
+                <p>Simulasi Booking Context mengecek cuaca untuk input Surge Pricing.</p>
+            </div>
+
+            <div class="showcase-body">
+                <button class="sim-button" data-target="weather-result" data-text-original="Cek Cuaca (Simulasi)">Cek Cuaca (Simulasi)</button>
+
+                <div class="result" id="weather-result">
+
+                    <h3>Kondisi Cuaca Saat Ini </h3>
+                    <div class="ui-card-container">
+                        <div class="ui-card weather-card">
+                            <span class="label">Suhu</span>
+                            <span class="value">23.5 <span class="unit">°C</span></span>
+                        </div>
+                        <div class="ui-card weather-card">
+                            <span class="label">Kondisi</span>
+                            <span class="value" style="font-size: 28px;">Hujan</span>
+                            <span class="label" style="font-size: 12px;">(moderate rain)</span>
+                        </div>
+                         <div class="ui-card weather-card">
+                            <span class="label">Lokasi</span>
+                            <span class="value" style="font-size: 28px;">Bandung</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="technical-toggle" data-target="weather-tech-view">Lihat Data Teknis (JSON)</a>
+                    <div class="technical-view" id="weather-tech-view">
+                        <h4>Visualisasi Permintaan (Request)</h4>
+                        <pre class="request-http"><code>GET https://api.openweathermap.org/data/2.5/weather?lat=-6.9175&lon=107.6191&appid=YOUR_API_KEY&units=metric</code></pre>
+
+                        <h4>Visualisasi Respons (Response)</h4>
+                        <pre><code>{
+  "coord": { "lon": 107.6191, "lat": -6.9175 },
+  "weather": [
+    { "id": 501, "main": "Rain", "description": "moderate rain" }
+  ],
+  "main": { "temp": 23.5, "feels_like": 24.1 },
+  "name": "Bandung"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
