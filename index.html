@@ -10,7 +10,7 @@
 
     <div class="container">
         <h1>Web Showcase: Integrasi API</h1>
-        <p class="subtitle">Visualisasi UI berdasarkan data API simulasi (tanpa API key).</p>
+        <p class="subtitle">Visualisasi UI berdasarkan data API simulasi.</p>
 
         <section class="showcase">
             <div class="showcase-header">
@@ -119,23 +119,23 @@ Authorization: Basic (Base64-encoded YOUR_SERVER_KEY)</code></pre>
                     <div class="ui-card-container">
                         <div class="ui-card weather-card">
                             <span class="label">Suhu</span>
-                            <span class="value">23.5 <span class="unit">°C</span></span>
+                            <span class="value"><span id="weather-temp">23.5</span> <span class="unit" id="weather-unit">°C</span></span>
                         </div>
                         <div class="ui-card weather-card">
                             <span class="label">Kondisi</span>
-                            <span class="value" style="font-size: 28px;">Hujan</span>
-                            <span class="label" style="font-size: 12px;">(moderate rain)</span>
+                            <span id="weather-condition" class="value" style="font-size: 28px;">Hujan</span>
+                            <span id="weather-desc" class="label" style="font-size: 12px;">(moderate rain)</span>
                         </div>
                          <div class="ui-card weather-card">
                             <span class="label">Lokasi</span>
-                            <span class="value" style="font-size: 28px;">Bandung</span>
+                            <span id="weather-city" class="value" style="font-size: 28px;">Bandung</span>
                         </div>
                     </div>
                     
                     <a href="#" class="technical-toggle" data-target="weather-tech-view">Lihat Data Teknis (JSON)</a>
                     <div class="technical-view" id="weather-tech-view">
                         <h4>Visualisasi Permintaan (Request)</h4>
-                        <pre class="request-http"><code>GET https://api.openweathermap.org/data/2.5/weather?lat=-6.9175&lon=107.6191&appid=YOUR_API_KEY&units=metric</code></pre>
+                        <pre class="request-http"><code>GET https://api.openweathermap.org/data/2.5/weather?lat=-6.9175&lon=107.6191&appid=717b64c259b63d6656a8032709d0a797&units=metric</code></pre>
 
                         <h4>Visualisasi Respons (Response)</h4>
                         <pre><code>{
